@@ -1,0 +1,12 @@
+{
+  "name": "app",
+  "short_name": "app",
+  "icons": [
+      
+  ],
+  "theme_color": "#000000",
+  "background_color": "#e0e0e0",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "orientation": "portrait"
+}

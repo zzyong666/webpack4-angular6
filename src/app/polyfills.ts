@@ -48,10 +48,6 @@ import 'core-js/es7/reflect';
  **/
 // import 'web-animations-js';  // Run `npm install --save web-animations-js`.
 
-/**
- * Required to support hammerjs
- **/
-import 'hammerjs';  // Run `npm install --save hammerjs`.
 
 /***************************************************************************************************
  * Zone JS is required by Angular itself.

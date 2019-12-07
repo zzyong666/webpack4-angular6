@@ -77,11 +77,9 @@ module.exports = (options) => webpackMerge(commonConfig({ env: ENV }), {
             use: ['style-loader', 'css-loader']
         }]
     },
-    stats: process.env.JHI_DISABLE_WEBPACK_LOGS ? 'none' : options.stats,
+    stats: options.stats,
     plugins: [
-        process.env.JHI_DISABLE_WEBPACK_LOGS
-            ? null
-            : new SimpleProgressWebpackPlugin({
+        new SimpleProgressWebpackPlugin({
                 format: options.stats === 'minimal' ? 'compact' : 'expanded'
             }),
         new FriendlyErrorsWebpackPlugin(),

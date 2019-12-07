@@ -1,0 +1,52 @@
+### webpack配置
+官网：https://www.webpackjs.com/configuration/module/#rule
+- resolve：配置模块如何解析。
+	- extensions：自动解析确定的扩展
+	- modules：告诉 webpack 解析模块时应该搜索的目录。
+	- alias：创建 import 或 require 的别名，来确保模块引入变得更简单。
+- entry：应用程序的起点入口。从这个起点开始，应用程序启动执行。如果传递一个数组，那么数组的每一项都会执行。简单规则：每个 HTML 页面都有一个入口起点。单页应用(SPA)：一个入口起点，多页应用(MPA)：多个入口起点。**如果传入一个字符串或字符串数组，chunk 会被命名为 main。如果传入一个对象，则每个键(key)会是 chunk 的名称，该值描述了 chunk 的入口起点**。
+- stats：统计信息。
+	- children ：是否添加 children 信息。
+- module：模块配置，决定了如何处理项目中的不同类型的模块。
+	- rule：每个规则可以分为三部分 - 条件(condition)，结果(result)和嵌套规则(nested rule)。
+- plugins：以各种方式自定义 webpack 构建过程的插件配置。
+	- new CleanWebpackPlugin()：用于删除/清理构建文件夹的webpack插件。
+	- new webpack.DefinePlugin()：可以在编译时期创建全局变量。适用于开发版本同线上版本在某些常量上有区别的场景。
+	- new CopyWebpackPlugin()：在webpack中拷贝文件和文件夹。
+		- from  定义要拷贝的源文件            from：__dirname+'/src/components'
+		- to      定义要拷贝到的目标文件夹  to: __dirname+'/dist'
+		- toType  file 或者 dir                        可选，默认是文件
+		- force   强制覆盖前面的插件            可选，默认是文件
+		- context                                            可选，默认base   context可用specific  context
+		- flatten  只拷贝指定的文件               可以用模糊匹配
+		- ignore  忽略拷贝指定的文件            可以模糊匹配
+	- new HtmlWebpackPlugin()：1.为html文件中引入的外部资源如script、link动态添加每次compile后的hash，防止引用缓存的外部文件问题。2.可以生成创建html入口文件，比如单页面可以生成一个html文件入口，配置N个html-webpack-plugin可以生成N个页面入口。
+		- template：html模板所在的文件路径。
+		- chunks：主要用于多入口文件，当你有多个入口文件，那就回编译后生成多个打包后的文件，那么chunks 就能选择你要使用那些js文件。
+		- chunksSortMode：
+		- inject：注入选项。
+			- true：默认值，script标签位于html文件的 body 底部。
+			- body：script标签位于html文件的 body 底部（同 true）。
+			- head：script 标签位于 head 标签内。
+			- false：不插入生成的 js 文件，只是单纯的生成一个 html 文件。
+	- new webpack.ProvidePlugin()： 自动加载模块，而不必到处 import 或 require。
+	- new SimpleProgressWebpackPlugin()：配置日志输出格式。
+		- minimal：最小日志记录器将所有内容打印到一行中，并在构建期间不断更新。
+		- compact：默认输出，它显示了每个构建步骤的进一步细节(例如子过程和几个子步骤)，但仍然不占用太多空间(因此命名紧凑)。
+		- expanded：扩展/扩展日志记录器与紧凑的日志记录器非常相似，但是将每个子步骤打印到单独的行中。
+		- verbose：详细/调试日志记录器记录所有内容。
+	- new FriendlyErrorsWebpackPlugin()：错误提示插件。
+	- new ForkTsCheckerWebpackPlugin()：在单独的进程中，运行typescript类型检查器的Webpack 插件。
+	- new webpack.ContextReplacementPlugin()：上下文替换插件，webpack 查找目录下符合条件的文件。
+	- new writeFilePlugin()：强制webpack-dev-server程序将包文件写入文件系统。当使用webpack程序代替webpack-dev-server时，此插件没有作用。
+	- new webpack.WatchIgnorePlugin()：无视指定的文件。
+	- new WebpackNotifierPlugin()：使用node-notifier包向用户显示构建状态系统通知。
+- devtool：此选项控制是否生成，以及如何生成 source map。（不同的值会影响构建速度和品质）。
+- devServer：通过来自 webpack-dev-server 的这些选项，能够用多种方式改变其行为。
+	- contentBase：告诉服务器从哪里提供内容（只有在你想要提供静态文件时才需要）。
+	- stats： 控制显示哪些包信息。
+	- watchOptions：与监视文件相关的控制选项。
+- output：指示 webpack 如何去输出、以及在哪里输出你的「bundle、asset 和其他你所打包或使用 webpack 载入的任何内容」。
+	- path：输出路径。
+	- filename：决定了每个起点输出 bundle 的名称。
+	- chunkFilename：此选项决定了非入口(non-entry) chunk 文件的名称。

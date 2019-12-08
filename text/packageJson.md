@@ -204,3 +204,10 @@
 	- `"test:watch": "npm test -- --watch --clearCache"`：运行test并运行，--watch：查看文件中的更改，并重新运行与更改的文件相关的测试。--clearCache：删除Jest缓存目录，然后在不运行测试的情况下退出。（https://jestjs.io/docs/en/cli）。
 	- `"webpack:dev": "npm run webpack-dev-server -- --config webpack/webpack.dev.js --inline --hot --port=4051 --open --watch-content-base --env.stats=minimal"`：运行webpack-dev-server（一个小型的Node.js Express服务器，它使用webpack-dev-middleware来伺服于webpack的资源包，用于开发）。 --config 文件路径：指向webpack配置文件。 --inline：内联模式，在包中插入一个脚本来处理实时的重新加载，构建消息将出现在浏览器控制台中。 --hot：热更新。  --port：需要监听的端口号。 --open：告诉dev-server在服务器启动后打开浏览器，设置为true打开默认浏览器。  --watch-content-base：文件改变将触发整个页面的重载。 --env.stats=minimal：设置环境变量，minimal：仅在发生错误或新编译时控制台输出。normal：标准输出。--profile ：捕获编译的每个步骤的时间信息，并将其包含在输出中。--progress ：输出运行进度到控制台。（官网：https://www.webpackjs.com/configuration/dev-server）
 	- `"webpack-dev-server": "node --max_old_space_size=4096 node_modules/webpack-dev-server/bin/webpack-dev-server.js"`：使用node命令运行webpack-dev-server.js，并配置运行内存为4096（即4G）。因为angular项目编译的时候CPU和内存需求会变大，需要内存2-3G，node本身（或V8）默认配置运行内存最大512M（32~bit）或1GB（64~bit），故使用--max_old_space_size来设置。
+
+- 依赖项说明
+	-  @angular/compiler - Angular的模板编译器。 它会理解模板，并且把模板转化成代码，以供应用程序运行和渲染。 开发人员通常不会直接跟这个编译器打交道，而是通过platform-browser-dynamic或离线模板编译器间接使用它。
+  - @angular/platform-browser - 与DOM和浏览器相关的每样东西，特别是帮助往DOM中渲染的那部分。 这个包还包含bootstrapStatic方法，用来引导那些在产品构建时需要离线预编译模板的应用程序
+  - @angular/platform-browser-dynamic - 为应用程序提供一些提供商和bootstrap方法，以便在客户端编译模板。不要用于离线编译。 我们使用这个包在开发期间引导应用，以及引导plunker中的范例。
+  - core-js - 为全局上下文(window)打的补丁，提供了ES2015(ES6)的很多基础特性。 我们也可以把它换成提供了相同内核API的其它填充库。 一旦所有的“主流浏览器”都实现了这些API，这个依赖就可以去掉了。
+  - reflect-metadata - 一个由Angular和TypeScript编译器共享的依赖包。

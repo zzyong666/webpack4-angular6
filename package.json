@@ -1,7 +1,7 @@
 {
-  "name": "webapp",
+  "name": "webpack4-angular6",
   "version": "0.0.0",
-  "description": "Description for webapp",
+  "description": "use webpack4 build project of angular6",
   "private": true,
   "license": "UNLICENSED",
   "cacheDirectories": [

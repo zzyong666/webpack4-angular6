@@ -70,16 +70,11 @@ module.exports = (options) => ({
                 // SERVER_API_URL: `''`
             }
         }),
+        // 复制静态资源
         new CopyWebpackPlugin([
-            /* { from: './node_modules/swagger-ui/dist/css', to: 'swagger-ui/dist/css' },
-            { from: './node_modules/swagger-ui/dist/lib', to: 'swagger-ui/dist/lib' },
-            { from: './node_modules/swagger-ui/dist/swagger-ui.min.js', to: 'swagger-ui/dist/swagger-ui.min.js' },
-            { from: './src/app/swagger-ui/', to: 'swagger-ui' }, */
             // { from: './src/app/content/', to: 'content' },
             // { from: './src/app/favicon.ico', to: 'favicon.ico' },
-            // { from: './src/app/manifest.webapp', to: 'manifest.webapp' },
-            // jhipster-needle-add-assets-to-webpack - JHipster will add/remove third-party resources in this array
-            // { from: './src/app/robots.txt', to: 'robots.txt' }
+            { from: './src/app/manifest.app', to: 'manifest.app' }
         ]),
         new HtmlWebpackPlugin({
             template: './src/app/index.html',

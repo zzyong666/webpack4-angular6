@@ -84,38 +84,12 @@ module.exports = (options) => webpackMerge(commonConfig({ env: ENV }), {
             }),
         new FriendlyErrorsWebpackPlugin(),
         new ForkTsCheckerWebpackPlugin(),
+        // 配置全局变量
         new webpack.DefinePlugin({
             'process.env': {
-                // The root URL for API calls, ending with a '/' - for example: `"https://www.jhipster.tech:8081/myservice/"`.
-                // If this URL is left empty (""), then it will be relative to the current context.
-                // If you use an API server, in `prod` mode, you will need to enable CORS
-                // (see the `jhipster.cors` common JHipster property in the `application-*.yml` configurations)
-                // INCIDENT_API_URL: `'http://192.168.0.56:9583'`,
-                // USER_API_URL: `'http://192.168.0.56:8585'`,
-				// ALERT_API_URL: `'http://192.168.0.56:9580'`,
-				// ALARM_API_URL:`'http://192.168.0.56:9579'`,
-				// EQUIPMENT_API_URL:`'http://192.168.0.56:8586'`,
-				// ACTIVE_MQ_URL:`'ws://192.168.0.56:61614'`,
-				// GIS_SERVICE_URL:`'http://192.168.0.57:8080'`,
-				// ITMP_HOST_NAME: `'http://192.168.0.56:8080'`,
-				// LOGIN_API_URL:`'http://192.168.0.56:8589'`,
 				// API_GATEWAY:`'http://192.168.0.56:8589'`,
             },
         }),
-        /* new BrowserSyncPlugin({
-            host: 'localhost',
-            port: 9000,
-            proxy: {
-                target: 'http://localhost:9060'
-            },
-            socket: {
-                clients: {
-                    heartbeatTimeout: 60000
-                }
-            }
-        }, {
-                reload: false
-            }), */
         new webpack.ContextReplacementPlugin(
             /angular(\\|\/)core(\\|\/)/,
             path.resolve(__dirname, './src/main/webapp')
